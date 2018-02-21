@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --open",
+    "stop": "Taskkill /IM node.exe /F",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
