@@ -12,7 +12,7 @@ const httpOptions = {
 @Injectable()
 export class PetService {
 
-  private petsUrl = 'http://localhost:8080/hostel/admin/pets';  // URL to web api
+  private petsUrl = 'http://localhost:8080/hostel/admin/animals';  // URL to web api
 
   constructor(private http: HttpClient) {
   }
@@ -54,8 +54,8 @@ export class PetService {
   }
 
   /** DELETE: delete the hero from the server */
-  deleteVisitor(hero: Pet | number): Observable<Pet> {
-    const id = typeof hero === 'number' ? hero : hero.id;
+  deleteVisitor(pet: Pet | number): Observable<Pet> {
+    const id = typeof pet === 'number' ? pet : pet.idanimal;
     const url = `${this.petsUrl}/${id}`;
 
     return this.http.delete<Pet>(url, httpOptions).pipe(

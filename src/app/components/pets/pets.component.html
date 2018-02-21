@@ -15,8 +15,7 @@
           <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne"
                data-parent="#accordion">
             <div class="card-body">
-              <form action="<c:url value="
-              /admin/pets"/>">
+              <form action="/admin/pets">
               <input type="text" name="addId" class="form-control" placeholder="ID владельца" required
                      autofocus>
               <input type="text" name="petName" class="form-control" placeholder="Кличка питомца"
@@ -48,8 +47,7 @@
           <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo"
                data-parent="#accordion">
             <div class="card-body">
-              <form action="<c:url value="
-              /admin/pets"/>">
+              <form action="/admin/pets">
               <input type="text" name="deleteId" class="form-control" placeholder="ID питомца"
                      required>
               <button class="btn btn-primary mt-3" type="submit">Удалить питомца</button>
@@ -76,13 +74,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="pet in pets">
-          <td>${pet.idowner}</td>
-          <td>${pet.idanimal}</td>
-          <td>${pet.animalName}</td>
-          <td>${pet.animalType.animalType}</td>
-          <td>${pet.age}</td>
-          <td>${pet.notice}</td>
+        <tr *ngFor="let pet of pets">
+          <td>{{pet.owner}}</td>
+          <td>{{pet.idanimal}}</td>
+          <td>{{pet.animalName}}</td>
+          <td>{{pet.animalType.animalType}}</td>
+          <td>{{pet.age}}</td>
+          <td>{{pet.notice}}</td>
         </tr>
         </tbody>
       </table>

@@ -11,6 +11,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {VisitorService} from './service/visitor.service';
 import {PetService} from './service/pet.service';
+import {PersonalService} from './service/personal.service';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import {PetService} from './service/pet.service';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [VisitorService, PetService],
+  providers: [VisitorService, PetService, PersonalService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
