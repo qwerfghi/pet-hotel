@@ -1,18 +1,10 @@
 export class Visitor {
   idowner: number;
-  ownerName: string;
-  ownerLastName: string;
-  ownerPatronymic: string;
+  owner_name: string;
+  owner_last_name: string;
+  owner_patronymic: string;
   passport: string;
-  phoneNum: string;
+  phone_num: string;
   email: string;
   discount: string;
-  address: {
-    idaddress: number;
-    region: string;
-    locality: string;
-    street: string;
-    houseNum: number;
-    apartmentNum: number
-  };
 }

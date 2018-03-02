@@ -105,28 +105,18 @@
           <td>Номер телефона</td>
           <td>Email</td>
           <td>Скидка</td>
-          <td>Область</td>
-          <td>Город/ Населенный пункт</td>
-          <td>Улица</td>
-          <td>Дом</td>
-          <td>Квартира</td>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let visitor of visitors">
           <td>{{visitor.idowner}}</td>
-          <td>{{visitor.ownerName}}</td>
-          <td>{{visitor.ownerLastName}}</td>
-          <td>{{visitor.ownerPatronymic}}</td>
+          <td>{{visitor.owner_name}}</td>
+          <td>{{visitor.owner_last_name}}</td>
+          <td>{{visitor.owner_patronymic}}</td>
           <td>{{visitor.passport}}</td>
-          <td>{{visitor.phoneNum}}</td>
+          <td>{{visitor.phone_num}}</td>
           <td>{{visitor.email}}</td>
           <td>{{visitor.discount}}</td>
-          <td>{{visitor.address.region}}</td>
-          <td>{{visitor.address.locality}}</td>
-          <td>{{visitor.address.street}}</td>
-          <td>{{visitor.address.houseNum}}</td>
-          <td>{{visitor.address.apartmentNum}}</td>
         </tr>
         </tbody>
       </table>

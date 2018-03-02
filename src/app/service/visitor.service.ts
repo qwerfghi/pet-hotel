@@ -12,7 +12,7 @@ const httpOptions = {
 @Injectable()
 export class VisitorService {
 
-  private visitorsUrl = 'http://localhost:8080/hostel/admin/owners';  // URL to web api
+  private visitorsUrl = 'http://localhost:3000/visitors';  // URL to web api
 
   constructor(private http: HttpClient) {
   }

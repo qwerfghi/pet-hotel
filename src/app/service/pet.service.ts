@@ -12,7 +12,7 @@ const httpOptions = {
 @Injectable()
 export class PetService {
 
-  private petsUrl = 'http://localhost:8080/hostel/admin/animals';  // URL to web api
+  private petsUrl = 'http://localhost:3000/pets';  // URL to web api
 
   constructor(private http: HttpClient) {
   }

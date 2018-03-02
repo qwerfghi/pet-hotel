@@ -1,11 +1,8 @@
 export class Pet {
   idanimal: number;
-  owner: number;
-  animalName: string;
-  animalType: {
-    animalType: string;
-    roomType: string;
-  };
+  idowner: number;
+  animal_name: string;
+  animal_kind: string;
   age: number;
   vetInspection: boolean;
   zootaxi: boolean;

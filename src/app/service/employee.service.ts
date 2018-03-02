@@ -3,70 +3,70 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {catchError} from 'rxjs/operators';
 import {of} from 'rxjs/observable/of';
-import {Personal} from '../model/Personal';
+import {Employee} from '../model/employee';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable()
-export class PersonalService {
+export class EmployeeService {
 
-  private PersonalsUrl = 'http://localhost:8080/hostel/admin/staff';  // URL to web api
+  private EmployeesUrl = 'http://localhost:3000/employees';  // URL to web api
 
   constructor(private http: HttpClient) {
   }
 
   /** GET heroes from the server */
-  getPersonals(): Observable<Personal[]> {
-    return this.http.get<Personal[]>(this.PersonalsUrl)
+  getEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.EmployeesUrl)
       .pipe(
-        catchError(this.handleError('getPersonals', []))
+        catchError(this.handleError('getEmployees', []))
       );
   }
 
   /** GET hero by id. Will 404 if id not found */
-  getPersonal(id: number): Observable<Personal> {
-    const url = `${this.PersonalsUrl}/${id}`;
-    return this.http.get<Personal>(url).pipe(
-      catchError(this.handleError<Personal>(`getPersonal id=${id}`))
+  getEmployee(id: number): Observable<Employee> {
+    const url = `${this.EmployeesUrl}/${id}`;
+    return this.http.get<Employee>(url).pipe(
+      catchError(this.handleError<Employee>(`getPersonal id=${id}`))
     );
   }
 
   /* GET heroes whose name contains search term */
-  searchPersonals(term: string): Observable<Personal[]> {
+  searchEmployees(term: string): Observable<Employee[]> {
     if (!term.trim()) {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Personal[]>(`api/heroes/?name=${term}`).pipe(
-      catchError(this.handleError<Personal[]>('searchPersonals', []))
+    return this.http.get<Employee[]>(`api/heroes/?name=${term}`).pipe(
+      catchError(this.handleError<Employee[]>('searchEmployees', []))
     );
   }
 
   //////// Save methods //////////
 
   /** POST: add a new hero to the server */
-  addVisitor(visitor: Personal): Observable<Personal> {
-    return this.http.post<Personal>(this.PersonalsUrl, visitor, httpOptions).pipe(
-      catchError(this.handleError<Personal>('addPersonal'))
+  addEmployee(visitor: Employee): Observable<Employee> {
+    return this.http.post<Employee>(this.EmployeesUrl, visitor, httpOptions).pipe(
+      catchError(this.handleError<Employee>('addEmployee'))
     );
   }
 
   /** DELETE: delete the hero from the server */
-  deleteVisitor(personal: Personal | number): Observable<Personal> {
+  deleteEmployee(personal: Employee | number): Observable<Employee> {
     const id = typeof personal === 'number' ? personal : personal.idstaff;
-    const url = `${this.PersonalsUrl}/${id}`;
+    const url = `${this.EmployeesUrl}/${id}`;
 
-    return this.http.delete<Personal>(url, httpOptions).pipe(
-      catchError(this.handleError<Personal>('deletePersonal'))
+    return this.http.delete<Employee>(url, httpOptions).pipe(
+      catchError(this.handleError<Employee>('deleteEmployee'))
     );
   }
 
   /** PUT: update the hero on the server */
-  updateVisitor(personal: Personal): Observable<any> {
-    return this.http.put(this.PersonalsUrl, personal, httpOptions).pipe(
-      catchError(this.handleError<any>('updatePersonal'))
+  updateEmployee(personal: Employee): Observable<any> {
+    return this.http.put(this.EmployeesUrl, personal, httpOptions).pipe(
+      catchError(this.handleError<any>('updateEmployee'))
     );
   }
 
