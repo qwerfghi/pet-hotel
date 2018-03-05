@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Employee} from '../../model/employee';
 import {EmployeeService} from '../../service/employee.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-personal',
@@ -30,7 +30,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   deleteEmployee(): void {
-    this.employeeService.deleteEmployee(this.id.value).subscribe(() => this.getEmployees());
+    this.employeeService.deleteEmployee(parseInt(this.id.value.toString(), 10)).subscribe(() => this.getEmployees());
   }
 
   addEmployee(): void {

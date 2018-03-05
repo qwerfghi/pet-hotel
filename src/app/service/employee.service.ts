@@ -55,6 +55,7 @@ export class EmployeeService {
 
   /** DELETE: delete the hero from the server */
   deleteEmployee(employee: Employee | number): Observable<Employee> {
+    console.log(employee);
     const id = typeof employee === 'number' ? employee : employee.id;
     const url = `${this.EmployeesUrl}/${id}`;
 
