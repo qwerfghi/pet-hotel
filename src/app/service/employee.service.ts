@@ -47,15 +47,15 @@ export class EmployeeService {
   //////// Save methods //////////
 
   /** POST: add a new hero to the server */
-  addEmployee(visitor: Employee): Observable<Employee> {
-    return this.http.post<Employee>(this.EmployeesUrl, visitor, httpOptions).pipe(
+  addEmployee(employee: Employee): Observable<Employee> {
+    return this.http.post<Employee>(this.EmployeesUrl, employee, httpOptions).pipe(
       catchError(this.handleError<Employee>('addEmployee'))
     );
   }
 
   /** DELETE: delete the hero from the server */
-  deleteEmployee(personal: Employee | number): Observable<Employee> {
-    const id = typeof personal === 'number' ? personal : personal.idstaff;
+  deleteEmployee(employee: Employee | number): Observable<Employee> {
+    const id = typeof employee === 'number' ? employee : employee.id;
     const url = `${this.EmployeesUrl}/${id}`;
 
     return this.http.delete<Employee>(url, httpOptions).pipe(

@@ -12,22 +12,29 @@ export class EmployeesComponent implements OnInit {
 
   employees: Employee[];
 
+  employee: Employee;
+
   id = new FormControl();
 
-  constructor(private personalService: EmployeeService) {
+  constructor(private employeeService: EmployeeService) {
   }
 
   ngOnInit() {
+    this.employee = new Employee();
     this.getEmployees();
   }
 
   getEmployees(): void {
-    this.personalService.getEmployees()
-      .subscribe(personal => this.employees = personal);
+    this.employeeService.getEmployees()
+      .subscribe(employees => this.employees = employees);
   }
 
   deleteEmployee(): void {
-    this.personalService.deleteEmployee(this.id.value).subscribe();
+    this.employeeService.deleteEmployee(this.id.value).subscribe(() => this.getEmployees());
+  }
+
+  addEmployee(): void {
+    this.employeeService.addEmployee(this.employee).subscribe(() => this.getEmployees());
   }
 
 }

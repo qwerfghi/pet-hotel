@@ -1,12 +1,12 @@
 export class Employee {
 
-  idstaff: number;
-  employee_name: string;
-  employee_last_name: string;
-  employee_patronymic: string;
-  date_rec: string;
+  id: number;
+  employeeName: string;
+  employeeLastName: string;
+  employeePatronymic: string;
+  dateRec: string;
   passport: string;
-  phone_num: string;
+  phoneNum: string;
   email: string;
   position: string;
 }
