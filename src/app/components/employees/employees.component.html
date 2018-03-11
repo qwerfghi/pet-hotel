@@ -16,24 +16,28 @@
                data-parent="#accordion">
             <div class="card-body">
               <form (ngSubmit)="addEmployee()" #addEmployeeForm="ngForm">
-                <input type="text" name="emplName" [(ngModel)]="employee.employeeName" class="form-control" placeholder="Имя сотрудника"
+                <input type="text" name="emplName" [(ngModel)]="newEmployee.name" class="form-control"
+                       placeholder="Имя сотрудника"
                        required autofocus>
-                <input type="text" name="emplLastName" [(ngModel)]="employee.employeeLastName" class="form-control"
+                <input type="text" name="emplLastName" [(ngModel)]="newEmployee.lastName" class="form-control"
                        placeholder="Фамилия сотрудника"
                        required>
-                <input type="text" name="emplPatr" [(ngModel)]="employee.employeePatronymic" class="form-control"
+                <input type="text" name="emplPatr" [(ngModel)]="newEmployee.patronymic" class="form-control"
                        placeholder="Отчество сотрудника"
                        required>
-                <input type="text" name="emplPosition" [(ngModel)]="employee.position" class="form-control"
+                <input type="text" name="emplPosition" [(ngModel)]="newEmployee.position" class="form-control"
                        placeholder="Должность сотрудника"
                        required>
-                <input type="date" name="date" [(ngModel)]="employee.dateRec" class="form-control"
+                <input type="date" name="date" [(ngModel)]="newEmployee.dateRec" class="form-control"
                        placeholder="Дата найма" required>
-                <input type="text" name="passNum" [(ngModel)]="employee.passport" class="form-control" placeholder="Номер паспорта"
+                <input type="text" name="passNum" [(ngModel)]="newEmployee.passport" class="form-control"
+                       placeholder="Номер паспорта"
                        required>
-                <input type="text" name="phoneNum" [(ngModel)]="employee.phoneNum" class="form-control" placeholder="Номер телефона"
+                <input type="text" name="phoneNum" [(ngModel)]="newEmployee.phoneNum" class="form-control"
+                       placeholder="Номер телефона"
                        required>
-                <input type="email" name="email" [(ngModel)]="employee.email" class="form-control" placeholder="Email" required>
+                <input type="email" name="email" [(ngModel)]="newEmployee.email" class="form-control"
+                       placeholder="Email" required>
                 <button class="btn btn-primary" type="submit">Добавить работника</button>
               </form>
             </div>
@@ -52,8 +56,8 @@
                data-parent="#accordion">
             <div class="card-body">
               <form (ngSubmit)="deleteEmployee()">
-                <input [formControl]="id" type="text" name="deleteId" class="form-control" placeholder="ID работника"
-                       required>{{id.value}}
+                <input [(ngModel)]="id" type="text" name="deleteId" class="form-control" placeholder="ID работника"
+                       required>
                 <button class="btn btn-primary mt-3" type="submit">Удалить работника</button>
               </form>
             </div>
@@ -81,11 +85,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let employee of employees">
+        <tr *ngFor="let employee of employees" (click)="showModal(employee.id, employee)">
           <td>{{employee.id}}</td>
-          <td>{{employee.employeeName}}</td>
-          <td>{{employee.employeeLastName}}</td>
-          <td>{{employee.employeePatronymic}}</td>
+          <td>{{employee.name}}</td>
+          <td>{{employee.lastName}}</td>
+          <td>{{employee.patronymic}}</td>
           <td>{{employee.dateRec | date}}</td>
           <td>{{employee.position}}</td>
           <td>{{employee.passport}}</td>

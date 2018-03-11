@@ -2,59 +2,59 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {catchError} from 'rxjs/operators';
+import {Owner} from '../model/Owner';
 import {of} from 'rxjs/observable/of';
-import {Employee} from '../model/Employee';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable()
-export class EmployeeService {
+export class OwnerService {
 
-  private EmployeesUrl = 'http://localhost:3000/employees';  // URL to web api
+  private OwnersUrl = 'http://localhost:3000/owners';  // URL to web api
 
   constructor(private http: HttpClient) {
   }
 
   /** GET heroes from the server */
-  getEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(this.EmployeesUrl)
+  getOwners(): Observable<Owner[]> {
+    return this.http.get<Owner[]>(this.OwnersUrl)
       .pipe(
-        catchError(this.handleError('getEmployees', []))
+        catchError(this.handleError('getOwners', []))
       );
   }
 
   /** GET hero by id. Will 404 if id not found */
-  getEmployee(id: number): Observable<Employee> {
-    const url = `${this.EmployeesUrl}/${id}`;
-    return this.http.get<Employee>(url).pipe(
-      catchError(this.handleError<Employee>(`getPersonal id=${id}`))
+  getOwner(id: number): Observable<Owner> {
+    const url = `${this.OwnersUrl}/${id}`;
+    return this.http.get<Owner>(url).pipe(
+      catchError(this.handleError<Owner>(`getHero id=${id}`))
     );
   }
 
   //////// Save methods //////////
 
   /** POST: add a new hero to the server */
-  addEmployee(employee: Employee): Observable<Employee> {
-    return this.http.post<Employee>(this.EmployeesUrl, employee, httpOptions).pipe(
-      catchError(this.handleError<Employee>('addEmployee'))
+  addOwner(visitor: Owner): Observable<Owner> {
+    return this.http.post<Owner>(this.OwnersUrl, visitor, httpOptions).pipe(
+      catchError(this.handleError<Owner>('addOwner'))
     );
   }
 
   /** DELETE: delete the hero from the server */
-  deleteEmployee(id: number): Observable<Employee> {
-    const url = `${this.EmployeesUrl}/${id}`;
+  deleteOwner(id: number): Observable<Owner> {
+    const url = `${this.OwnersUrl}/${id}`;
 
-    return this.http.delete<Employee>(url, httpOptions).pipe(
-      catchError(this.handleError<Employee>('deleteEmployee'))
+    return this.http.delete<Owner>(url, httpOptions).pipe(
+      catchError(this.handleError<Owner>('deleteOwner'))
     );
   }
 
-  /** PUT: update the hero on the server */
-  updateEmployee(id: number, employee: Employee): Observable<any> {
-    return this.http.put(`${this.EmployeesUrl}/${id}`, employee, httpOptions).pipe(
-      catchError(this.handleError<any>('updateEmployee'))
+  /** PUT: update the owner on the server */
+  updateOwner(id: number, owner: Owner): Observable<any> {
+    return this.http.put(`${this.OwnersUrl}/${id}`, owner, httpOptions).pipe(
+      catchError(this.handleError<any>('updateOwner'))
     );
   }
 

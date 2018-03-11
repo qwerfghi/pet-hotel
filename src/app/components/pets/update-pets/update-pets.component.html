@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h4 class="modal-title">Hello there!</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="updatePet()" #updatePetForm="ngForm" id="updatePetForm">
+    <input type="text" name="petId" [(ngModel)]="pet.id" class="form-control" placeholder="ID питомца" required
+           autofocus>
+    <input type="text" name="ownerId" [(ngModel)]="pet.ownerId" class="form-control" placeholder="ID владельца"
+           required>
+    <input type="text" name="petName" [(ngModel)]="pet.name" class="form-control" placeholder="Кличка питомца"
+           required>
+    <select class="form-control" name="petType" [(ngModel)]="pet.kind">
+      <option>собака</option>
+      <option>кот</option>
+      <option>хомяк</option>
+      <option>черепаха</option>
+      <option>змея</option>
+    </select>
+    <input type="text" name="petAge" [(ngModel)]="pet.age" class="form-control" placeholder="Возраст питомца"
+           required>
+    <input type="text" name="notice" [(ngModel)]="pet.notice" class="form-control" placeholder="Примечание" required>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="submit" form="updatePetForm">Обновить питомца</button>
+</div>

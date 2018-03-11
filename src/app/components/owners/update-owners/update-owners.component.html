@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title">Hello there!</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="updateOwner()" #updateOwnerForm="ngForm" id="updateOwnerForm">
+    <input type="text" name="visitorID" [(ngModel)]="owner.id" class="form-control" placeholder="ID посетителя"
+           required autofocus>
+    <input type="text" name="visitorName" [(ngModel)]="owner.name" class="form-control" placeholder="Имя посетителя"
+           required>
+    <input type="text" name="visitorLastName" [(ngModel)]="owner.lastName" class="form-control"
+           placeholder="Фамилия посетителя"
+           required>
+    <input type="text" name="visitorPatr" [(ngModel)]="owner.patronymic" class="form-control"
+           placeholder="Отчество посетителя"
+           required>
+    <input type="text" name="passNum" [(ngModel)]="owner.passport" class="form-control" placeholder="Номер паспорта"
+           required>
+    <input type="text" name="phoneNum" [(ngModel)]="owner.phoneNumber" class="form-control" placeholder="Номер телефона"
+           required>
+    <input type="email" name="email" [(ngModel)]="owner.email" class="form-control" placeholder="Email" required>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="submit" form="updateOwnerForm">Обновить посетителя</button>
+</div>

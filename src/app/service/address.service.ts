@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {of} from 'rxjs/observable/of';
 import {catchError} from 'rxjs/operators';
 import {Observable} from 'rxjs/Observable';
-import {Employee} from '../model/employee';
-import {Address} from '../model/address';
+import {Address} from '../model/Address';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -13,7 +12,7 @@ const httpOptions = {
 @Injectable()
 export class AddressService {
 
-  private AddressesUrl = 'http://localhost:3000/address';  // URL to web api
+  private AddressesUrl = 'http://localhost:3000/addresses';  // URL to web api
 
   constructor(private http: HttpClient) {
   }
@@ -34,17 +33,6 @@ export class AddressService {
     );
   }
 
-  /* GET heroes whose name contains search term */
-  searchAddresses(term: string): Observable<Employee[]> {
-    if (!term.trim()) {
-      // if not search term, return empty hero array.
-      return of([]);
-    }
-    return this.http.get<Employee[]>(`api/heroes/?name=${term}`).pipe(
-      catchError(this.handleError<Employee[]>('searchAddresses', []))
-    );
-  }
-
   //////// Save methods //////////
 
   /** POST: add a new hero to the server */
@@ -55,8 +43,7 @@ export class AddressService {
   }
 
   /** DELETE: delete the hero from the server */
-  deleteAddress(address: Address | number): Observable<Address> {
-    const id = typeof address === 'number' ? address : address.idaddress;
+  deleteAddress(id: number): Observable<Address> {
     const url = `${this.AddressesUrl}/${id}`;
 
     return this.http.delete<Address>(url, httpOptions).pipe(
@@ -65,8 +52,8 @@ export class AddressService {
   }
 
   /** PUT: update the hero on the server */
-  updateAddress(address: Address): Observable<any> {
-    return this.http.put(this.AddressesUrl, address, httpOptions).pipe(
+  updateAddress(id: number, address: Address): Observable<any> {
+    return this.http.put(`${this.AddressesUrl}/${id}`, address, httpOptions).pipe(
       catchError(this.handleError<any>('updateAddress'))
     );
   }

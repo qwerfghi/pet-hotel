@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h4 class="modal-title">Hello there!</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="updateEmployee()" #updateEmployeeForm="ngForm" id="updateEmployeeForm">
+    <input type="text" name="id" [(ngModel)]="employee.id" class="form-control" placeholder="ID сотрудника"
+           required autofocus>
+    <input type="text" name="emplName" [(ngModel)]="employee.name" class="form-control" placeholder="Имя сотрудника"
+           required>
+    <input type="text" name="emplLastName" [(ngModel)]="employee.lastName" class="form-control"
+           placeholder="Фамилия сотрудника" required>
+    <input type="text" name="emplPatr" [(ngModel)]="employee.patronymic" class="form-control"
+           placeholder="Отчество сотрудника" required>
+    <input type="text" name="emplPosition" [(ngModel)]="employee.position" class="form-control"
+           placeholder="Должность сотрудника" required>
+    <input type="date" name="date" [(ngModel)]="employee.dateRec" class="form-control"
+           placeholder="Дата найма" required>
+    <input type="text" name="passNum" [(ngModel)]="employee.passport" class="form-control" placeholder="Номер паспорта"
+           required>
+    <input type="text" name="phoneNum" [(ngModel)]="employee.phoneNum" class="form-control" placeholder="Номер телефона"
+           required>
+    <input type="email" name="email" [(ngModel)]="employee.email" class="form-control" placeholder="Email" required>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="submit" form="updateEmployeeForm">Обновить работника</button>
+</div>

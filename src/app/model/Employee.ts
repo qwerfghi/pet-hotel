@@ -1,9 +1,9 @@
 export class Employee {
 
   id: number;
-  employeeName: string;
-  employeeLastName: string;
-  employeePatronymic: string;
+  name: string;
+  lastName: string;
+  patronymic: string;
   dateRec: string;
   passport: string;
   phoneNum: string;

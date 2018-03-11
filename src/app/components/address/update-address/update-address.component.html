@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h4 class="modal-title">Hello there!</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="updateAddress()" #updateAddressForm="ngForm" id="updateAddressForm">
+    <input type="text" name="id" [(ngModel)]="address.id" class="form-control"
+           placeholder="ID адреса" required autofocus>
+    <input type="text" name="region" [(ngModel)]="address.region" class="form-control"
+           placeholder="Область" required>
+    <input type="text" name="locality" [(ngModel)]="address.locality" class="form-control"
+           placeholder="Район" required>
+    <input type="text" name="street" [(ngModel)]="address.street" class="form-control"
+           placeholder="Улица" required>
+    <input type="text" name="houseNumber" [(ngModel)]="address.houseNumber" class="form-control"
+           placeholder="Номер дома" required>
+    <input type="text" name="apartmentNumber" [(ngModel)]="address.apartmentNumber" class="form-control"
+           placeholder="Номер квартиры" required>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="submit" form="updateAddressForm">Обновить адрес</button>
+</div>

@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {catchError} from 'rxjs/operators';
 import {of} from 'rxjs/observable/of';
-import {Pet} from '../model/pet';
+import {Pet} from '../model/Pet';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -12,14 +12,14 @@ const httpOptions = {
 @Injectable()
 export class PetService {
 
-  private petsUrl = 'http://localhost:3000/pets';  // URL to web api
+  private PetsUrl = 'http://localhost:3000/pets';  // URL to web api
 
   constructor(private http: HttpClient) {
   }
 
   /** GET heroes from the server */
   getPets(): Observable<Pet[]> {
-    return this.http.get<Pet[]>(this.petsUrl)
+    return this.http.get<Pet[]>(this.PetsUrl)
       .pipe(
         catchError(this.handleError('getPets', []))
       );
@@ -27,36 +27,24 @@ export class PetService {
 
   /** GET hero by id. Will 404 if id not found */
   getPet(id: number): Observable<Pet> {
-    const url = `${this.petsUrl}/${id}`;
+    const url = `${this.PetsUrl}/${id}`;
     return this.http.get<Pet>(url).pipe(
       catchError(this.handleError<Pet>(`getHero id=${id}`))
-    );
-  }
-
-  /* GET heroes whose name contains search term */
-  searchPets(term: string): Observable<Pet[]> {
-    if (!term.trim()) {
-      // if not search term, return empty hero array.
-      return of([]);
-    }
-    return this.http.get<Pet[]>(`api/heroes/?name=${term}`).pipe(
-      catchError(this.handleError<Pet[]>('searchPets', []))
     );
   }
 
   //////// Save methods //////////
 
   /** POST: add a new hero to the server */
-  addVisitor(visitor: Pet): Observable<Pet> {
-    return this.http.post<Pet>(this.petsUrl, visitor, httpOptions).pipe(
+  addPet(visitor: Pet): Observable<Pet> {
+    return this.http.post<Pet>(this.PetsUrl, visitor, httpOptions).pipe(
       catchError(this.handleError<Pet>('addVisitor'))
     );
   }
 
   /** DELETE: delete the hero from the server */
-  deleteVisitor(pet: Pet | number): Observable<Pet> {
-    const id = typeof pet === 'number' ? pet : pet.idanimal;
-    const url = `${this.petsUrl}/${id}`;
+  deletePet(id: number): Observable<Pet> {
+    const url = `${this.PetsUrl}/${id}`;
 
     return this.http.delete<Pet>(url, httpOptions).pipe(
       catchError(this.handleError<Pet>('deleteVisitor'))
@@ -64,8 +52,8 @@ export class PetService {
   }
 
   /** PUT: update the hero on the server */
-  updateVisitor(hero: Pet): Observable<any> {
-    return this.http.put(this.petsUrl, hero, httpOptions).pipe(
+  updatePet(id: number, hero: Pet): Observable<any> {
+    return this.http.put(`${this.PetsUrl}/${id}`, hero, httpOptions).pipe(
       catchError(this.handleError<any>('updateVisitor'))
     );
   }

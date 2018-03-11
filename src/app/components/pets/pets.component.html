@@ -15,21 +15,25 @@
           <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne"
                data-parent="#accordion">
             <div class="card-body">
-              <form action="/admin/pets">
-              <input type="text" name="addId" class="form-control" placeholder="ID владельца" required
+              <form (ngSubmit)="addPet()" #addOwnerForm="ngForm">
+                <input type="text" name="addId" [(ngModel)]="newPet.ownerId" class="form-control"
+                       placeholder="ID владельца" required
                      autofocus>
-              <input type="text" name="petName" class="form-control" placeholder="Кличка питомца"
-                     required>
-              <select class="form-control" name="petType">
+                <input type="text" name="petName" [(ngModel)]="newPet.name" class="form-control"
+                       placeholder="Кличка питомца"
+                       required>
+                <select class="form-control" name="petType" [(ngModel)]="newPet.kind">
                 <option>собака</option>
                 <option>кот</option>
                 <option>хомяк</option>
                 <option>черепаха</option>
                 <option>змея</option>
               </select>
-              <input type="text" name="petAge" class="form-control" placeholder="Возраст питомца"
-                     required>
-              <input type="text" name="notice" class="form-control" placeholder="Примечание" required>
+                <input type="text" name="petAge" [(ngModel)]="newPet.age" class="form-control"
+                       placeholder="Возраст питомца"
+                       required>
+                <input type="text" name="notice" [(ngModel)]="newPet.notice" class="form-control"
+                       placeholder="Примечание" required>
               <button class="btn btn-primary" type="submit">Добавить питомца</button>
               </form>
             </div>
@@ -47,8 +51,8 @@
           <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo"
                data-parent="#accordion">
             <div class="card-body">
-              <form action="/admin/pets">
-              <input type="text" name="deleteId" class="form-control" placeholder="ID питомца"
+              <form (ngSubmit)="deletePet()">
+                <input [(ngModel)]="id" type="text" name="deleteId" class="form-control" placeholder="ID питомца"
                      required>
               <button class="btn btn-primary mt-3" type="submit">Удалить питомца</button>
               </form>
@@ -74,11 +78,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let pet of pets">
-          <td>{{pet.idowner}}</td>
-          <td>{{pet.idanimal}}</td>
-          <td>{{pet.animal_name}}</td>
-          <td>{{pet.animal_kind}}</td>
+        <tr *ngFor="let pet of pets" (click)="showModal(pet.id, pet)">
+          <td>{{pet.ownerId}}</td>
+          <td>{{pet.id}}</td>
+          <td>{{pet.name}}</td>
+          <td>{{pet.kind}}</td>
           <td>{{pet.age}}</td>
           <td>{{pet.notice}}</td>
         </tr>
